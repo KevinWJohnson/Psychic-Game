@@ -3,11 +3,23 @@
 
 // Variables
 
+var userWinsSelect = document.getElementById(user-wins);
+var userLossesSelect = document.getElementById(user-losses);
+var userGuessesLeftSelect = document.getElementById(user-guesses-left);
+var userGuessesSoFarSelect = document.getElementById(user-guesses-so-far);
+
+userWinsSelect.textContent = 0;
+userLossesSelect.textContent = 0;
+userGuessesLeftSelect.textContent = 9;
+userGuessesSoFarSelect.textContent ="";
+
 var maxGuessesAllowed = 9;
 var guesses = 0;
 var guessesLeft = 9;
 var winTotal = 0;
 var lossTotal = 0;
+
+
 var letters = [
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
     "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
@@ -50,25 +62,15 @@ document.onkeyup = function (event) {
             var lettersGuessedString = lettersGuessed.toString();
 
             if (letterPressed === letterToGuess) {
-                winTotal++;
+                userWinsSelect.textContent = winTotal++;
             }
 
             if (guessesLeft === 1) {
-                lossTotal++;
+                userLossesSelect.textContent = lossTotal++;
             }
+
+            userGuessesLeftSelect.textContent = guessesLeft;
+            userGuessesSoFarSelect.textContent = lettersGuessedString;
         }    
-    }
-        // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
-        var html =
-            "<h2>Wins: " + winTotal + "</h2>" +
-            "<h2>Losses: " + lossTotal + "</h2>" +
-            "<h2>Guesses Left: " + guessesLeft + "</h2>" +
-            "<h2>Your Guesses so far: " + lettersGuessedString + "</h2>";
-
-            // Set the inner HTML contents of the #game div to our html string
-            document.querySelector("#game").innerHTML = html;
-
-
-
-    
+    } 
 }
