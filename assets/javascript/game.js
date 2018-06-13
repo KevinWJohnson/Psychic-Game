@@ -2,104 +2,71 @@
 //Javascript of Letter Guessing Game
 
 // Variables
- var guesses = 0;
- var maxGuessesAllowed = 9;
- var guessesLeft = 9;
- var winTotal = 0;
- var lossTotal = 0;
- var message = "Guess what letter I'm thinking of";
- var letters = [
-             "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
-             "p","q","r","s","t","u","v","w","x","y","z"
-             ];
 
- var letterToGuess = "";
- var higherOrLower = "";
- var lettersGuessed;
- var gameOver = false;
+var maxGuessesAllowed = 9;
+var guesses = 0;
+var guessesLeft = 9;
+var winTotal = 0;
+var lossTotal = 0;
+var letters = [
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
+    "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+];
 
 
-// Initializing Variables
-initGame();
 
-function initGame() {
-    var letterIndex = Math.floor(Math.random() * letters.length);
-    letterToGuess = letters[letterIndex];
-    guesses = 0;
-    maxGuessesAllowed = 9;
-    guessesLeft = 9;
-    winTotal = 0;
-    lossTotal = 0;
-    lettersGuessed = [];
-    gameOver = false;
-    window.addEventListener("keyup",eventKeyPressed,true);
-    drawScreen();
-}
-    
 
-function eventKeyPressed(e) {
-    if (!gameOver) {
-        var letterPressed = String.fromCharCode(e.keyCode);
-        letterPressed = letterPressed.toLowerCase();
-        guesses++;
-        lettersGuessed.push(letterPressed);
+// This function is run whenever the user presses a key.
+document.onkeyup = function (event) {
 
-        if (letterPressed == letterToGuess) {
-            gameOver = true;
-        } else {
+    // Determines which key was pressed.
+    var lettersGuessed = event.key;
 
-            letterIndex = letters.indexOf(letterToGuess);
-            guessIndex = letters.indexOf(letterPressed);
-            Debugger.log(guessIndex);
-            if (guessIndex < 0) {
-                higherOrLower = "That is not a letter";
-            } else if (guessIndex > letterIndex) {
-                higherOrLower = "Lower";
-            } else {
-                higherOrLower = "Higher";
+    // Making Lower case for comparison
+    lettersGuessed = lettersGuessed.toLowerCase();
+
+    // Checks that the key pressed is a letter
+    guessIndex = letters.indexOf(lettersGuessed);
+    if (guessIndex < 0) {
+        alert("That is not a letter");
+
+        // Randomly chooses a choice from the options array. This is the Computer's letter guess.
+        var letterIndex = letters[Math.floor(Math.random() * letters.length)];
+        var letterToGuess = letters[letterIndex];
+
+        // Reseting Variables       
+        guesses = 0;
+        guessesLeft = 9;
+        winTotal = 0;
+        lossTotal = 0;
+
+        // This loops thru the number guess allowed
+        for (guessesLeft = maxGuessesAllowed; guessesLeft > 0; guessesLeft--) {
+
+            guesses++;
+            lettersGuessed.push(letterPressed);
+            lettersGuessedString = lettersGuessed.toString();
+
+            if (letterPressed === letterToGuess) {
+                winTotal++;
             }
 
-        }
-        drawScreen();
-        }
+            if (guessesLeft === 1) {
+                lossTotal++;
+            }
+        }    
     }
+        // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
+        var html =
+            "<h2>Wins: " + winTotal + "</h2>" +
+            "<h2>Losses: " + computerGuess + "</h2>" +
+            "<h2>Guesses Left: " + guessesLeft + "</h2>" +
+            "<h2>Your Guesses so far: " + lettersGuessedString + "</h2>" +
+
+            // Set the inner HTML contents of the #game div to our html string
+            document.querySelector("#game").innerHTML = html;
 
 
 
-    function drawScreen() {
-        //Background
-        context.fillStyle = "#ffffaa";
-        context.fillRect(0, 0, 500, 300);
-        //Box
-        context.strokeStyle = "#000000";
-        context.strokeRect(5,  5, 490, 290);
-        context.textBaseline = "top";
-        //Message
-        context.fillStyle = "#FF0000";
-        context.font = "14px _sans";
-        context.fillText  (message, 125, 30);
-       //Wins
-        context.fillStyle = "#109910";
-        context.font = "16px _sans";
-        context.fillText  ('Wins: ' + guesses, 215, 50);
-        //Losses
-        context.fillStyle = "#109910";
-        context.font = "16px _sans";
-        context.fillText  ('Wins: ' + guesses, 215, 50);
-        //GuessesLeft
-        context.fillStyle = "#109910";
-        context.font = "16px _sans";
-        context.fillText  ('Guesses: ' + guessesLeft, 215, 50);
- 
- 
-        //Letters Guessed
-        context.fillStyle = "#FF0000";
-        context.font = "16px _sans";
-        context.fillText  ("Letters Guessed: " + lettersGuessed.toString(), 10, 260);
-        if (gameOver) {
-           context.fillStyle = "#FF0000";
-           context.font = "40px _sans";
-           context.fillText  ("You Got It!", 150, 180);
-        }
-    }
+    
 }
