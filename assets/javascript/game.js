@@ -20,13 +20,15 @@ var letters = [
 document.onkeyup = function (event) {
 
     // Determines which key was pressed.
-    var lettersGuessed = event.key;
+    var letterPressed = event.key;
+
+    console.log(letterPressed);
 
     // Making Lower case for comparison
-    lettersGuessed = lettersGuessed.toLowerCase();
+    letterPressed = letterPressed.toLowerCase();
 
     // Checks that the key pressed is a letter
-    guessIndex = letters.indexOf(lettersGuessed);
+    guessIndex = letters.indexOf(letterPressed);
     if (guessIndex < 0) {
         alert("That is not a letter");
 
@@ -61,7 +63,7 @@ document.onkeyup = function (event) {
             "<h2>Wins: " + winTotal + "</h2>" +
             "<h2>Losses: " + computerGuess + "</h2>" +
             "<h2>Guesses Left: " + guessesLeft + "</h2>" +
-            "<h2>Your Guesses so far: " + lettersGuessedString + "</h2>" +
+            "<h2>Your Guesses so far: " + lettersGuessedString + "</h2>";
 
             // Set the inner HTML contents of the #game div to our html string
             document.querySelector("#game").innerHTML = html;
