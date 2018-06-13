@@ -47,7 +47,7 @@ document.onkeyup = function (event) {
 
             guesses++;
             lettersGuessed.push(letterPressed);
-            lettersGuessedString = lettersGuessed.toString();
+            var lettersGuessedString = lettersGuessed.toString();
 
             if (letterPressed === letterToGuess) {
                 winTotal++;
@@ -61,7 +61,7 @@ document.onkeyup = function (event) {
         // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
         var html =
             "<h2>Wins: " + winTotal + "</h2>" +
-            "<h2>Losses: " + computerGuess + "</h2>" +
+            "<h2>Losses: " + lossTotal + "</h2>" +
             "<h2>Guesses Left: " + guessesLeft + "</h2>" +
             "<h2>Your Guesses so far: " + lettersGuessedString + "</h2>";
 
