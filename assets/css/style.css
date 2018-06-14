@@ -7,3 +7,33 @@ body {
     margin-top: 25px;
     float: left;
 }
+
+
+/**
+ * Media Query
+ **/
+  
+  @media screen and (max-width: 768px) {
+    
+    #myImg {
+        width: 40%;
+        margin-top: 25px;
+        margin-left: 45px;
+        clear: both;
+    }
+  }    
+  
+  /* Additional Screen Sizes */
+  
+  /* Width at 640px and below */
+  @media screen and (max-width: 640px) {
+  
+    #myImg {
+      width: 40%;
+      margin-top: 25px;
+      margin-left: 45px;
+      clear: both;
+    }
+  }
+  
+  
