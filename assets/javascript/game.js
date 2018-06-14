@@ -28,11 +28,14 @@ var letters = [
     "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
 ];
 
-
-
+// The Psychic Game image
+myImg.src = "assets/images/The_Psychic_Game.PNG";
 
 // This function is run whenever the user presses a key.
 document.onkeyup = function (event) {
+
+    // The Psychic Game image
+    myImg.src = "assets/images/The_Psychic_Game.PNG";
 
     // Determines which key was pressed.
     var letterPressed = event.key;
@@ -68,15 +71,19 @@ document.onkeyup = function (event) {
             guesses = 0;
             lettersGuessed = [];
             lettersGuessedString = "";
+            myImg.src = "assets/images/You_Win.PNG";
         }
 
+        // Comparing current guesses to number of guesses allowed
         if (guesses === guessesTotal) {
             userLossesSelect.textContent = lossTotal++;
             guesses = 0;
             lettersGuessed = [];
             lettersGuessedString = "";
+            myImg.src = "assets/images/You_Lose.PNG";
         }
 
+        // Writing to HTML page
         userWinsSelect.textContent = winTotal;
         userLossesSelect.textContent = lossTotal;
         guessesLeft = guessesTotal - guesses;
