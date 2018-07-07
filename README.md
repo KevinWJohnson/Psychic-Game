@@ -9,3 +9,5 @@ letter randomly selected by the app before 9 guesses, it is recorded by the app 
 to pick the letter radomly selected by the app in 9 guesses, it is recorded as a loss. The specific letters
 guessed by the user are displayed. When a win or a loss occurs, the game updates the Wins and Losses totals,
 the specific letters guessed by the user are cleared, and the game starts over.
+
+https://kevinwjohnson.github.io/Psychic-Game/
